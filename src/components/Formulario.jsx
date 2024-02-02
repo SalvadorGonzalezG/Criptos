@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import useSelectMonedas from '../hooks/useSelectMonedas'
+import { monedas } from '../data/monedas' // importamos el componente y automanticmante se pasa hacia mi hook
 
 const InputSubmit = styled.input`
     background-color: purple;
@@ -21,8 +23,15 @@ const InputSubmit = styled.input`
 `
 
 const Formulario = () => {
+    
+
+    const [ SelectMonedas ] = useSelectMonedas('Elige tu moneda:', monedas)
+    
   return (
     <form>
+
+        <SelectMonedas />
+
         <InputSubmit 
             type="submit"
             value="Cotizar." 
