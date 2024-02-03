@@ -24,7 +24,7 @@ const InputSubmit = styled.input`
 
 `
 
-const Formulario = () => {
+const Formulario = ({setMonedas}) => {
     // estado donde setcriptos llenara el array al momento de actualizar el estado.
     const [ criptos, setCriptos ] = useState([])
     // estado inicializado en false seca colocado para los errores
@@ -72,6 +72,11 @@ const Formulario = () => {
         }
         // al pasar la validacion el error desaparece al actualizar el estado.
         setError(false)
+
+        setMonedas({
+            moneda,
+            criptomoneda
+        })
 
     }
   return (

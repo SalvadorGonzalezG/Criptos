@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styled from '@emotion/styled' // permite definir un stiled component
 import ImagenCripto from './img/cryptocurrency.png'
 import Formulario from './components/Formulario'
@@ -40,12 +40,42 @@ const Heading = styled.h1`
 
 function App() {
 
+  //definimos el estado extraemos monedas y setmonedas este va a ser un objeto y este sera llenado con los datos del formulario.
+  const [monedas, setMonedas] = useState({})
+
+  const [resultado, setResultado] = useState({})
+
+
+  useEffect(()=>{
+    // para que se ejecute cuando tenga algo lo condicionamos con un if a dicho objeto
+    if(Object.keys(monedas).length > 0){
+    // funcion que cotizara cripto realizara el llamado a la API
+      const cotizarCripto =  async () => {
+        // objetDestructu
+        const {moneda, criptomoneda} = monedas
+          // Generamos la pagina de forma dinamica.
+          const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`
+          console.log(url)
+          // extraemos los datos con fetch
+          const req = await fetch(url)
+          // los datos los convertimos a formato .json
+          const res = await req.json()
+          // sitaxis para acceder a objetos con [][] de forma dinamica
+          setResultado(res.DISPLAY[criptomoneda][moneda])
+
+        }
+        cotizarCripto()
+    }
+  },[monedas]) // arreglo de dependencias estara escuchando por los cambios en monedas
   return (
     <Contenedor>
       <Imagen src={ImagenCripto} alt='Imagen Criptomonedas'/>
       <div>
         <Heading>Cotiza la criptomoneda de tu preferencia.</Heading>
-        <Formulario/>
+        <Formulario
+          setMonedas={setMonedas}
+        />
+          
       </div>
       
     </Contenedor>
