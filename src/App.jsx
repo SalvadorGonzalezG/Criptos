@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import styled from '@emotion/styled' // permite definir un stiled component
 import ImagenCripto from './img/cryptocurrency.png'
 import Formulario from './components/Formulario'
+import Result from './components/Result'
 
 const Contenedor = styled.div `
   max-width: 900px;
@@ -75,7 +76,7 @@ function App() {
         <Formulario
           setMonedas={setMonedas}
         />
-          
+        { resultado.PRICE && <Result resultado={resultado}/> }
       </div>
       
     </Contenedor>
