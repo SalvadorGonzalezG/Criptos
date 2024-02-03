@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import useSelectMonedas from '../hooks/useSelectMonedas'
 import { monedas } from '../data/monedas' // importamos el componente y automanticmante se pasa hacia mi hook
 import { useState, useEffect } from 'react' // Lo ocuparemos para mandar llamar una api.
+import Error from './Error'
 
 const InputSubmit = styled.input`
     background-color: purple;
@@ -26,6 +27,8 @@ const InputSubmit = styled.input`
 const Formulario = () => {
     // estado donde setcriptos llenara el array al momento de actualizar el estado.
     const [ criptos, setCriptos ] = useState([])
+    // estado inicializado en false seca colocado para los errores
+    const [ error, setError ] = useState(false)
 
     const [ moneda, SelectMonedas ] = useSelectMonedas('Elige tu moneda:', monedas)
     
@@ -55,19 +58,40 @@ const Formulario = () => {
         }
         consultApi();
     },[]) // que se consulte una unica vez.
+        //creamos la funcion para prevenir el refresh de la pagina al dar click a cotizar
+    const handleSubmit = e => {
+        e.preventDefault()
+        console.log("Enviando FORMULARIO")
+       
+        //Si alguno de los 2 datos incluyen un sting vacio envia un error y deten el codigo
+        if([moneda, criptomoneda].includes('')){
+            // devolvemos el estado del error con true
+            setError(true)
 
+            return
+        }
+        // al pasar la validacion el error desaparece al actualizar el estado.
+        setError(false)
+
+    }
   return (
-    <form>
+    <>
+    { error && <Error>Llena todos los campos</Error> }
+
+    <form
+        onSubmit={handleSubmit}
+    >
 
         <SelectMonedas />
         <SelectCriptomoneda />
-        
+
         <InputSubmit 
             type="submit"
             value="Cotizar." 
         
         />
     </form>
+    </>
   )
 }
 
