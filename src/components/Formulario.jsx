@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import useSelectMonedas from '../hooks/useSelectMonedas'
 import { monedas } from '../data/monedas' // importamos el componente y automanticmante se pasa hacia mi hook
-import { useEffect } from 'react' // Lo ocuparemos para mandar llamar una api.
+import { useState, useEffect } from 'react' // Lo ocuparemos para mandar llamar una api.
 
 const InputSubmit = styled.input`
     background-color: purple;
@@ -24,7 +24,8 @@ const InputSubmit = styled.input`
 `
 
 const Formulario = () => {
-    
+    // estado donde setcriptos llenara el array al momento de actualizar el estado.
+    const [ criptos, setCriptos ] = useState([])
 
     const [ moneda, SelectMonedas ] = useSelectMonedas('Elige tu moneda:', monedas)
     
@@ -36,7 +37,19 @@ const Formulario = () => {
             const req = await fetch(url)
             const res = await req.json()
             // en la api en .Data se encuentran las criptomonedas, siendo esto el dato que deseamos.
-            console.log(res.Data)
+            //console.log(res.Data)
+            // Obteniendo la info de la api medinate una constante llamada array info
+            const arrayCripto = res.Data.map(cripto =>{ //.map crea un nuevo arreglo
+                
+                const objeto = {
+                    id: cripto.CoinInfo.Name,
+                    nombre: cripto.CoinInfo.FullName
+                }
+                // retornamos el objeto para que se retorne el objeto y array cripto se llene
+                return objeto
+            })
+            // el estado sera modificado y este llenara el array.
+            setCriptos(arrayCripto)
         }
         consultApi();
     },[]) // que se consulte una unica vez.
