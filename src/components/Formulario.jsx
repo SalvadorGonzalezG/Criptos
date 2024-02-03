@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import useSelectMonedas from '../hooks/useSelectMonedas'
 import { monedas } from '../data/monedas' // importamos el componente y automanticmante se pasa hacia mi hook
@@ -14,6 +13,7 @@ const InputSubmit = styled.input`
     font-size: 20px;
     border-radius: 10px;
     transition: background-color .3s ease;
+    margin-top: 30px;
 
     &:hover{
         background-color: #b612b6;

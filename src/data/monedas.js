@@ -5,6 +5,7 @@ const monedas = [
     {id: 'EUR', nombre: 'Euro'},
     {id: 'GBP', nombre: 'Libra R.U'},
 ]
+// abrir llaver para exportar más cosas
 export {
      monedas 
 }
