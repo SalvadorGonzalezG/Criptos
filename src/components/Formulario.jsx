@@ -29,6 +29,8 @@ const Formulario = () => {
 
     const [ moneda, SelectMonedas ] = useSelectMonedas('Elige tu moneda:', monedas)
     
+    const [ criptomoneda, SelectCriptomoneda ] = useSelectMonedas('Elige tu criptomoneda', criptos)
+    
     // (CONSUMIENDO LA API) mandamos llamar la api con useEffect y ademas de forma asincrona con async & await
     useEffect(()=>{
         const consultApi = async() => {
@@ -58,7 +60,8 @@ const Formulario = () => {
     <form>
 
         <SelectMonedas />
-
+        <SelectCriptomoneda />
+        
         <InputSubmit 
             type="submit"
             value="Cotizar." 
