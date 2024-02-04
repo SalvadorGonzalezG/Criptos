@@ -3,6 +3,7 @@ import styled from '@emotion/styled' // permite definir un stiled component
 import ImagenCripto from './img/cryptocurrency.png'
 import Formulario from './components/Formulario'
 import Result from './components/Result'
+import Spiner from './components/Spiner'
 
 const Contenedor = styled.div `
   max-width: 900px;
@@ -46,12 +47,17 @@ function App() {
 
   const [resultado, setResultado] = useState({})
 
+  // estado para un spiner al momento de cargar las imagenes
+  const [ loading, setLoading ] = useState(false)
+
 
   useEffect(()=>{
     // para que se ejecute cuando tenga algo lo condicionamos con un if a dicho objeto
     if(Object.keys(monedas).length > 0){
     // funcion que cotizara cripto realizara el llamado a la API
       const cotizarCripto =  async () => {
+        // cuando comienze a ejecutarse nuestra funcion 
+        setLoading(true)
         // objetDestructu
         const {moneda, criptomoneda} = monedas
           // Generamos la pagina de forma dinamica.
@@ -63,6 +69,8 @@ function App() {
           const res = await req.json()
           // sitaxis para acceder a objetos con [][] de forma dinamica
           setResultado(res.DISPLAY[criptomoneda][moneda])
+          // una vez que finalice todo el spiner desaparece
+          setLoading(false)
 
         }
         cotizarCripto()
@@ -76,6 +84,7 @@ function App() {
         <Formulario
           setMonedas={setMonedas}
         />
+        {loading && <Spiner/>}
         { resultado.PRICE && <Result resultado={resultado}/> }
       </div>
       
