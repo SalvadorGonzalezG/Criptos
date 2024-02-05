@@ -22,3 +22,16 @@ body {
   margin-top: .5%;
   color: rgb(64, 246, 246);
 }
+.boton{
+  background-color: aqua;
+  border-radius: 10px;
+  margin-left: 50px;
+  position: absolute;
+  margin-top: 12px;
+  font-family: 'EB Garamond', sans-serif;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(240, 201, 153);
+  }
+}

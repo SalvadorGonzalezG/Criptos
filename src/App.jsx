@@ -84,6 +84,7 @@ function App() {
   },[monedas]) // arreglo de dependencias estara escuchando por los cambios en monedas
   return (
     <>
+    
     <Contenedor>
       <Imagen src={ImagenCripto} alt='Imagen Criptomonedas'/>
       <div>
@@ -98,7 +99,12 @@ function App() {
     <div className='page'>
     <div className='below'>
       <h1 className='icons'>
-        <FaReact/> < PiWebhooksLogoFill/> <SiStyledcomponents/> <TbApi/> <ImSpinner6/> 
+        <FaReact/> 
+        < PiWebhooksLogoFill/> 
+        <SiStyledcomponents/> 
+        <TbApi/> 
+        <ImSpinner6/> 
+        <a href='https://github.com/SalvadorGonzalezG/Criptos' target='blank'> <button className='boton' >GitHub</button></a>
       </h1>
       
     </div>
