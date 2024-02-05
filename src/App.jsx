@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react'
 import styled from '@emotion/styled' // permite definir un stiled component
-import ImagenCripto from './img/cryptocurrency.png'
+import ImagenCripto from './img/crypto.png'
 import Formulario from './components/Formulario'
 import Result from './components/Result'
 import Spiner from './components/Spiner'
+import { SiStyledcomponents } from "react-icons/si";
+import { TbApi } from "react-icons/tb";
+import { FaReact } from "react-icons/fa6";
+import { PiWebhooksLogoFill } from "react-icons/pi";
+import { ImSpinner6 } from "react-icons/im";
 
 const Contenedor = styled.div `
   max-width: 900px;
@@ -16,15 +21,16 @@ const Contenedor = styled.div `
   }
   `
 const Imagen = styled.img`
+
   max-width: 400px;
-  width: 80%;
-  margin: 100px auto 0 auto;
+  width: 95%;
+  margin: 110px auto 0 auto;
   display: block;
   `
 
 const Heading = styled.h1`
   font-family: 'EB Garamond', sans-serif;
-  color: #FF00FF;
+  color: #de46de;
   text-align: center;
   font-weight: 700;
   margin-top: 80px;
@@ -34,7 +40,7 @@ const Heading = styled.h1`
     content: '';
     width: 100px;
     height: 6px;
-    background-color: #b18aab;
+    background-color: #54c7fc;
     display: block;
     margin: 10px auto 0 auto;
   }
@@ -77,6 +83,7 @@ function App() {
     }
   },[monedas]) // arreglo de dependencias estara escuchando por los cambios en monedas
   return (
+    <>
     <Contenedor>
       <Imagen src={ImagenCripto} alt='Imagen Criptomonedas'/>
       <div>
@@ -87,9 +94,16 @@ function App() {
         {loading && <Spiner/>}
         { resultado.PRICE && <Result resultado={resultado}/> }
       </div>
-      
     </Contenedor>
-    
+    <div className='page'>
+    <div className='below'>
+      <h1 className='icons'>
+        <FaReact/> < PiWebhooksLogoFill/> <SiStyledcomponents/> <TbApi/> <ImSpinner6/> 
+      </h1>
+      
+    </div>
+  </div>
+  </>
   )
 }
 

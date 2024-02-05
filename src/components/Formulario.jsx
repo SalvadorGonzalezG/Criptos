@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react' // Lo ocuparemos para mandar llamar 
 import Error from './Error'
 
 const InputSubmit = styled.input`
-    background-color: purple;
+    background-color: #9e029e;
     width: 100%;
     padding: 10px;
     color: #FFF;
@@ -16,9 +16,11 @@ const InputSubmit = styled.input`
     border-radius: 10px;
     transition: background-color .3s ease;
     margin-top: 30px;
+    font-family:'EB Garamond', sans-serif;
+    
 
     &:hover{
-        background-color: #b612b6;
+        background-color: #c135c1;
         cursor: pointer;
     }
 
@@ -81,7 +83,7 @@ const Formulario = ({setMonedas}) => {
     }
   return (
     <>
-    { error && <Error>Llena todos los campos</Error> }
+    { error && <Error>Llena todos los campos.</Error> }
 
     <form
         onSubmit={handleSubmit}
