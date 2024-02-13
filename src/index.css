@@ -32,6 +32,6 @@ body {
   cursor: pointer;
 
   &:hover {
-    background-color: rgb(240, 201, 153);
+    background-color: rgb(240, 201, 154);
   }
 }
